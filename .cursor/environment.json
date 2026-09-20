@@ -1,0 +1,16 @@
+{
+  "name": "Age calculator app",
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "python3 -m http.server 8000 --bind 0.0.0.0",
+      "description": "Serves the static Age calculator app over HTTP at http://localhost:8000 (required because main.js uses ES module imports that do not work over file://)."
+    }
+  ],
+  "ports": [
+    {
+      "name": "web server",
+      "port": 8000
+    }
+  ]
+}
