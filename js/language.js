@@ -44,6 +44,8 @@ let currentLang = "en";
 
 document.getElementById("lang-toggle").addEventListener("click", () => {
   currentLang = currentLang === "en" ? "uk" : "en";
+  document.documentElement.lang = currentLang;
+  document.dispatchEvent(new Event("languagechange"));
 
   // оновлюємо текст на сторінці відповідно до вибраної мови
   document.getElementById("title").textContent =

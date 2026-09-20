@@ -3,16 +3,35 @@
 :root {
   --color-body-bgc: #f0f0f0;
   --color-card-bgc: #ffffff;
-  --color-main-text: ##0e0e0e;
+  --color-input-bgc: #ffffff;
+  --color-main-text: #0e0e0e;
   --color-secondary-text: #6e6e6e;
   --color-accent: #864cff;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-border: #6e6e6e;
   --animation-time-transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --color-body-bgc: #12121a;
+  --color-card-bgc: #1c1c28;
+  --color-input-bgc: #12121a;
+  --color-main-text: #f4f4f5;
+  --color-secondary-text: #a1a1aa;
+  --color-accent: #9d6fff;
+  --color-shadow: rgba(0, 0, 0, 0.45);
+  --color-border: #3f3f50;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
   background-color: var(--color-body-bgc);
+  color: var(--color-main-text);
   line-height: 1.2;
+  transition: background-color var(--animation-time-transition),
+    color var(--animation-time-transition);
 }
 
 .container {
@@ -23,7 +42,52 @@ body {
 
 /* nav */
 .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 16px 0;
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  transition: background-color var(--animation-time-transition),
+    transform var(--animation-time-transition);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible,
+.lang-btn:hover,
+.lang-btn:focus-visible {
+  transform: scale(1.04);
+}
+
+.theme-toggle:focus-visible,
+.lang-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.theme-toggle__icon {
+  display: none;
+}
+
+.theme-toggle__icon--moon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle__icon--moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle__icon--sun {
+  display: block;
 }
 
 .lang-btn {
@@ -34,6 +98,8 @@ body {
   border: none;
   text-decoration: none;
   font-weight: 600;
+  transition: background-color var(--animation-time-transition),
+    transform var(--animation-time-transition);
 }
 
 /* hero section */
@@ -60,6 +126,9 @@ body {
   padding: 8px 16px;
   background-color: var(--color-card-bgc);
   border-radius: 8px;
+  box-shadow: 0 4px 6px var(--color-shadow);
+  transition: background-color var(--animation-time-transition),
+    box-shadow var(--animation-time-transition);
 }
 
 .today__title {
@@ -76,9 +145,11 @@ body {
   justify-content: center;
   background-color: var(--color-card-bgc);
   border-radius: 16px 16px 72px 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px var(--color-shadow);
   margin-right: auto;
   margin-left: auto;
+  transition: background-color var(--animation-time-transition),
+    box-shadow var(--animation-time-transition);
 }
 .card__title {
 }
@@ -106,10 +177,20 @@ body {
 .card__form-input {
   width: 100%;
   padding: 8px;
-  border: 1px solid var(--color-secondary-text);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   font-size: 16px;
   color: var(--color-main-text);
+  background-color: var(--color-input-bgc);
+  transition: background-color var(--animation-time-transition),
+    color var(--animation-time-transition),
+    border-color var(--animation-time-transition);
+}
+
+.card__form-input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
 }
 .month-label {
 }
